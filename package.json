@@ -12,14 +12,19 @@
   "keywords": [],
   "jest": {
     "testEnvironment": "node",
-    "coveragePathIgnorePatterns": ["/node_modules/"],
-    "setupFilesAfterEnv": ["./tests/utils/jest.setup.js"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+      "./tests/utils/jest.setup.js"
+    ],
     "globalSetup": "./tests/jest/globalSetup.js",
     "globalTeardown": "./tests/jest/globalTeardown.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/node": "^7.8.3",
     "@babel/polyfill": "^7.8.3",
     "@hapi/joi": "^17.0.2",
     "apollo-server-express": "^2.9.16",
@@ -37,7 +42,6 @@
   "devDependencies": {
     "@babel/cli": "^7.8.0",
     "@babel/core": "^7.8.0",
-    "@babel/node": "^7.8.0",
     "@babel/preset-env": "^7.8.2",
     "@babel/register": "^7.8.3",
     "axios": "^0.19.1",
