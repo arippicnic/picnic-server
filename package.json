@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./build/index.js",
-    "heroku-postbuild": "rm -rf build && babel src --out-dir dist --copy-files",
+    "heroku-postbuild": "babel src --out-dir build --copy-files",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/index.js --exec babel-node",
-    "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand"
+    "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand",
+    "heroku-postbuild": "rm -rf build && babel src --out-dir dist --copy-files"
   },
   "keywords": [],
   "jest": {
