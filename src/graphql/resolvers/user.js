@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { User } from "../../models";
 import { attmeptSignIn, signOut } from "../../middlewares/auth";
 
+const { SESSION_NAME, NODE_ENV  } = process.env;
+
 export default {
 	Mutation: {
 		signUp: async (root, args, { req }, info) => {
@@ -15,13 +17,11 @@ export default {
 			const { email, password } = args;
 			const user = await attmeptSignIn(email, password);
 			req.session.userId = user.id;
-			res.cookie("SESSION_NAME", user.id, {
-				//env
+			res.cookie(SESSION_NAME, user.id, {
 				signed: true,
 				httpOnly: true,
-				secure: false //env
+				secure: NODE_ENV === 'production'
 			});
-			// console.log(req.session.userId);
 			req.session.save();
 			return user;
 		},

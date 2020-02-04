@@ -1,7 +1,9 @@
 import { AuthenticationError } from "apollo-server-express";
 
-import { User, Session } from '../models';
+import { User, Session } from "../models";
+
 const message = "Wrong Details. Try again";
+const { SESSION_NAME } = process.env;
 
 export const attmeptSignIn = async (email, password) => {
   const user = await User.findOne({ email });
@@ -34,12 +36,12 @@ export const ensureSignedOut = req => {
 };
 
 export const signOut = async (req, res) => {
-  await Session.deleteOne({ 'session.userId': req.session.userId })
+  await Session.deleteOne({ "session.userId": req.session.userId });
   return new Promise((resolve, reject) => {
     req.session.destroy(err => {
-      if (err) reject(err)
-      res.clearCookie("SESSION_NAME") //env
-      resolve(true)
-    })
-  })
-}
+      if (err) reject(err);
+      res.clearCookie(SESSION_NAME);
+      resolve(true);
+    });
+  });
+};
