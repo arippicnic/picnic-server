@@ -11,7 +11,13 @@ export default app => {
 		typeDefs,
 		resolvers,
 		schemaDirectives,
-		playground: true,
+		playground: NODE_ENV === 'production'
+			? false
+			: {
+					settings: {
+						"request.credentials": "same-origin"
+					}
+			  },
 		context: ({ req, res }) => ({ req, res })
 	});
 
