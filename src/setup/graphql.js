@@ -11,6 +11,7 @@ export default app => {
 		typeDefs,
 		resolvers,
 		schemaDirectives,
+		playground: true,
 		context: ({ req, res }) => ({ req, res })
 	});
 
