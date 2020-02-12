@@ -10,8 +10,9 @@
   },
   "scripts": {
     "start": "node ./build/index.js",
-    "heroku-postbuild": "babel src --out-dir build --copy-files",
-    "dev": "env-cmd -f ./config/dev.env nodemon ./src/index.js --exec babel-node",
+    "heroku-postbuild": "yarn clean && babel src --out-dir build --copy-files",
+    "clean": "rm -rf build && mkdir build",
+    "dev": "yarn clean && env-cmd -f ./config/dev.env nodemon ./src/index.js --exec babel-node",
     "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand"
   },
   "keywords": [],
