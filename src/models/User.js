@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
     },
     email_confirmed: {
       type: Boolean,
-      default: false
+      default: true
     },
     password: {
       type: String,
