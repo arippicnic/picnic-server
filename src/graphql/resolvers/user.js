@@ -26,7 +26,7 @@ export default {
 			res.cookie(SESSION_NAME, user.id, {
 				signed: true,
 				httpOnly: true,
-				secure: NODE_ENV === "production"
+				secure: false
 			});
 			req.session.save();
 			return user;
