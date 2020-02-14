@@ -20,14 +20,12 @@ export default app => {
 			store,
 			name: SESSION_NAME,
 			secret: SESSION_SECRET,
-			resave: true,
-			httpOnly: false,
-			rolling: true,
+			resave: false,
 			saveUninitialized: false,
 			cookie: {
 				maxAge: parseInt(SESSION_LIFE),
-				sameSite: true,
-				secure: false
+				httpOnly: true,
+				secure: NODE_ENV === 'production'
 			}
 		})
 	);
