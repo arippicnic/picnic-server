@@ -12,7 +12,7 @@ server.listen({ port }, async error => {
 	} else {
 		await setupDb();
 		return console.info(
-			`Server running on http://localhost:${port} [${NODE_ENV}]`
+			`Server running on ${port} [${NODE_ENV}]`
 		);
 	}
 });

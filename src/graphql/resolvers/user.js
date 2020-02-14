@@ -8,7 +8,6 @@ const { SESSION_NAME, NODE_ENV } = process.env;
 export default {
 	Query: {
 		me: async (root, args, { req }, info) => {
-			// console.log("from me resolver:", req.session.userId)
 			const res = await User.findById(req.session.userId);
 			return res;
 		}
@@ -27,7 +26,7 @@ export default {
 			res.cookie(SESSION_NAME, user.id, {
 				signed: true,
 				httpOnly: true,
-				secure: false
+				secure: NODE_ENV === "production"
 			});
 			req.session.save();
 			return user;
