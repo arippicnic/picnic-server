@@ -20,8 +20,6 @@ export const attmeptSignIn = async (email, password) => {
 export const signedIn = req => {
   if (req.session.passport && req.session.passport.user.userId)
     return req.session.passport.user.userId;
-      console.log("from signin middleware", req.session.userId);
-      console.log("from express-session deprecated", req.headers.cookie);
   return req.session.userId;
 };
 
