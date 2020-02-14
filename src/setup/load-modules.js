@@ -1,3 +1,4 @@
+
 export default app => {
 	app.disable("x-powered-by");
 	app.use(function(req, res, next) {
