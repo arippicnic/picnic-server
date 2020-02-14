@@ -4,7 +4,7 @@ export default app => {
 		res.removeHeader("X-Powered-By");
 		next();
 	});
-	if (NODE_ENV === "production") {
+	if (process.env.NODE_ENV === "production") {
 		app.set("trust proxy", 1);
 	}
 };
