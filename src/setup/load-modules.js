@@ -1,3 +1,4 @@
+import bodyParser from "body-parser";
 
 export default app => {
 	app.disable("x-powered-by");
@@ -6,4 +7,6 @@ export default app => {
 		next();
 	});
 	app.set("trust proxy", 1);
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: true }));
 };
