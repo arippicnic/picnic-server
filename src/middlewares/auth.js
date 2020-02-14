@@ -20,6 +20,7 @@ export const attmeptSignIn = async (email, password) => {
 export const signedIn = req => {
   if (req.session.passport && req.session.passport.user.userId)
     return req.session.passport.user.userId;
+      console.log("from signin middleware", req.session.userId);
   return req.session.userId;
 };
 
