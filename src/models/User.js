@@ -6,6 +6,13 @@ const { CONFIRM_MAIL_TOKEN_SECRET } = process.env;
 
 const userSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+      minlength: [2, "first name too short! must be at least 2 letters long "]
+    },
     email: {
       type: String,
       required: true,
@@ -17,6 +24,23 @@ const userSchema = new mongoose.Schema(
         message: ({ value }) => `Mail already exists `
       }
     },
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      minlength: [2, "username too short! must be at least 2 letters long "],
+      validate: {
+        validator: username => User.doesntExist({ username }),
+        message: ({ value }) => `User already exists`
+      }
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: [5, "password must be at least 7 letters long "]
+    },
     email_token: {
       type: String
     },
@@ -24,11 +48,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true
     },
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: [5, "password must be at least 7 letters long "]
+    active: {
+      type: Boolean,
+      default: true
     }
   },
   {
